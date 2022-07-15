@@ -15,10 +15,10 @@ contract ETHLinked {
         uint timestamp;
     }
 
-    uint idCount = 1;   
+    uint public idCount = 1;   
 
     // Array to store all of the achievements
-    Achievement[] private achievements;
+    Achievement[] internal achievements;
 
     // Function to add a new achievement to the array
     function addAchievement(string memory _title, string memory _description, string memory _tag) public {
@@ -27,9 +27,8 @@ contract ETHLinked {
         // _id provides unique id to every achievement
         uint _id = idCount;
 
-        // _comments let other useers comment on a specific achievement due to gas fee it has been limited to only
-        // 10 comments per achievement.
-        string[] memory _comments = new string[](10);
+        // _comments let other useers comment on a specific achievement
+        string[] memory _comments;
 
         achievements.push(Achievement(_id, msg.sender, _title, _description, _tag, _comments, block.timestamp));
 
