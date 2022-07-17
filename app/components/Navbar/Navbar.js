@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 import classes from './Navbar.module.css';
 
 import Button from '../UI/Button';
@@ -8,11 +10,11 @@ const Navbar = () => {
       <div>
         <ul className = {classes.items}>
           <li>
-            ETHLinked
+            <Link href = '/'>ETHLinked</Link>
           </li>
-          <li>Tags</li>
-          <li>Users</li>
-          <li>Add Achievement</li>
+          <li><Link href = '/Tags'>Tags</Link></li>
+          <li><Link href = '/Users'>Users</Link></li>
+          <li><Link href = '/Add'>Add Achievement</Link></li>
         </ul>
       </div>
       <div className = {classes.wallet}>
