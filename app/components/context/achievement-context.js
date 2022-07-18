@@ -1,5 +1,7 @@
 // src/context/state.js
 import { createContext, useContext, useEffect, useState } from "react";
+import {ethers} from 'ethers';
+import {ABI, contractAddress} from '../constants/index';
 
 export const AppContext = createContext();
 
@@ -14,27 +16,17 @@ export function AppWrapper({ children }) {
     chainId: null,
   });
 
-  const [achievementArray, setAchievementArray] = useState([
-    {
-      id: 1,
-      user: "0X2B",
-      title: "MLH",
-      description: "MLH Fellowship",
-      tag: "MLH",
-      comments: [],
-      timestamp: "20:01",
-    },
-    {
-      id: 2,
-      user: "0X2B",
-      title: "MICROSOFT",
-      description: "MLH Fellowship",
-      tag: "MICROSOFT",
-      comments: [],
-      timestamp: "20:01",
-    },
-  ]);
+  const [achievementArray, setAchievementArray] = useState([]);
+  const [isSuccess, setIsSuccess] = useState(false);
 
+  if(isSuccess){
+    setTimeout(() => {
+      setIsSuccess(false);
+    },3500);
+  }
+
+
+  // <- useEffect connects to the wallet and also get the achievements from the blockchain ->
   useEffect(() => {
     const { ethereum } = window;
     console.log(ethereum.chainId);
@@ -70,9 +62,59 @@ export function AppWrapper({ children }) {
           });
         }
       }
+
+      getAchievements();
     };
     connectWallet();
   }, []);
+
+  // <- useEffect ends here -> 
+
+
+  // <- getAchievements is called to get the achievements from the blockchain ->
+
+  async function getAchievements() {
+
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
+    const contract = new ethers.Contract(contractAddress, ABI, signer);
+    
+
+    const achievements = await contract.getAchievements();
+
+    const filteredAchievements = achievements.map((achievement) => {
+      const epochTime = achievement.timestamp;
+      let date = new Date(0);
+      date.setUTCSeconds(epochTime);
+      date = date.toString();
+      const publishedDate = date.split(" ");
+      return {
+        id: achievement.id.toString(),
+        title: achievement.title,
+        description: achievement.description,
+        tag: achievement.tag.toUpperCase(),
+        user:achievement.user,
+        comments: achievement.comments,
+        timestamp: `${publishedDate[1]} ${publishedDate[2]} ${publishedDate[3]}`      
+      }
+    })
+    
+    setAchievementArray(filteredAchievements);
+
+    setAccount((prevState) => {
+      return {
+       ...prevState,
+      signer: signer,
+      contract: contract
+    }
+
+    })
+  }
+
+  // <- getAchievements ends here ->
+
+
+  // <- it searches the achievemenst by using tag or userId ->
 
   const searchByTagorUserName = (keyword, TagorUserName) => {
     let matched = [];
@@ -95,12 +137,30 @@ export function AppWrapper({ children }) {
     setSearchedArray(matched);
   };
 
+  // <- searchByTagorUserName ends here ->
+
+  async function newAchievement(achievementData) {
+    const {title, description, tag} = achievementData;
+    const tx = await account.contract.addAchievement(title, description, tag);
+    await tx.wait();
+    setIsSuccess(true);
+    getAchievements();
+  
+  }
+
+  // <- sharedState is the one that is being shared accross every component 
+  
   const sharedState = {
     achievementArray,
     searchByTagorUserName,
     searchedArray,
-    account
+    account,
+    newAchievement,
+    getAchievements,
+    isSuccess
   };
+
+  //  <- sharedState ends here ->
 
   return (
     <AppContext.Provider value={{ sharedState }}>

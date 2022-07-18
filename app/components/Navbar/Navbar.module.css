@@ -25,7 +25,21 @@
     margin-left: 4rem;
 }
 
+.items li:hover{
+    color: white;
+    opacity: 1;
+    animation: navList 0.4s ease-out;
+}
 .wallet {
 
     margin-right: 3rem;
+}
+
+@keyframes navList {
+    0% {
+        opacity: 0.5;
+    }
+    100%{
+        opacity: 1;
+    }
 }
