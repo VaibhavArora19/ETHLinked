@@ -1,10 +1,17 @@
 import Link from 'next/link';
+import { useContext } from 'react';
 
 import classes from './Navbar.module.css';
 
+import { AppContext } from '../context/Achievement-context';
 import Button from '../UI/Button';
 
 const Navbar = () => {
+  const ctx = useContext(AppContext);
+
+  const accountAddress = ctx.sharedState.account.accountAddress;
+
+
   return (
     <div className = {classes.navbar}>
       <div>
@@ -18,7 +25,7 @@ const Navbar = () => {
         </ul>
       </div>
       <div className = {classes.wallet}>
-        <Button>Wallet Address</Button>
+        <Button>{!accountAddress ? 'Connect Metamask' : `${accountAddress.substring(0,4)}...${accountAddress.substring(38,42)}`}</Button>
       </div>
     </div>
   );

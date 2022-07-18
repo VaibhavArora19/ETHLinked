@@ -1,9 +1,16 @@
+import { useState } from "react";
+
 import Input from "../UI/Input";
 import Button from "../UI/Button";
 
 import classes from "./AchievementForm.module.css";
 
 const AchievementForm = () => {
+  const [progress, setProgress] = useState(0);
+  
+  const progressHandler = (input) => {
+    setProgress(input.length.toString());
+  }
   return (
     <div>
       <form className={classes.form}>
@@ -12,11 +19,13 @@ const AchievementForm = () => {
           <Input
             label="Description"
             placeholder="Tell us about your achievement! (350 words)"
+            inputChange={progressHandler}
+            maxlength="350"
           />
           <progress
             className={`progress progress-secondary w-56 ${classes.bar}`}
-            value="50"
-            max="100"
+            value={progress}
+            max="350"
           ></progress>
           <Input
             label="Tag"
