@@ -8,6 +8,13 @@ import Button from "../UI/Button";
 import classes from "./AchievementForm.module.css";
 
 const AchievementForm = () => {
+  const [progress, setProgress] = useState(0);
+  
+  const [formData, setFormData] = useState({
+    title: '',
+    description: '',
+    tag: ''
+  });
   const ctx = useContext(AppContext);
 
   if(!ctx.sharedState.account.isConnected)
@@ -15,16 +22,11 @@ const AchievementForm = () => {
     return <div className= {classes.connect}>Please Connect to MetaMask to add Achievement!!!</div>
   }
 
-  const [formData, setFormData] = useState({
-    title: '',
-    description: '',
-    tag: ''
-  });
 
 
   const isSuccess = ctx.sharedState.isSuccess;
 
-  const [progress, setProgress] = useState(0);
+
 
   const titleHandler = (input) => {
     
