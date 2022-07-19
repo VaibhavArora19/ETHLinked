@@ -8,7 +8,7 @@ const Input = (props) => {
   const changeHandler = (event) => {
     setInput(event.target.value);
 
-     props.inputChange(event.target.value, props.label);
+     props.inputChange(event.target.value);
     
   }
 

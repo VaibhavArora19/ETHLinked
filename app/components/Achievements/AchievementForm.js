@@ -26,52 +26,50 @@ const AchievementForm = () => {
 
   const [progress, setProgress] = useState(0);
 
-  const progressHandler = (input, label) => {
-    if(label === 'Title'){
+  const titleHandler = (input) => {
+    
+    setFormData((prevState) => {
+      return {
+        ...prevState,
+        title: input
+      }
+    })
+  }
+  const descriptionHandler = (input) => {
      
-      setFormData((prevState) => {
-        return {
-          ...prevState,
-          title: input
-        }
-      })
-
-    }else if(label === 'Description'){
- 
       setFormData((prevState) => {
         return {
           ...prevState,
           description: input
         }
-      })
+      });
       setProgress(input.length.toString());
-    }else{
-      
-      setFormData((prevState) => {
-        return {
-          ...prevState,
-          tag: input
-        }
-      })
-    }
   }
 
+  const tagHandler = (input) => {
+
+    setFormData((prevState) => {
+      return {
+        ...prevState,
+        tag:input
+      }
+    })
+  }
 
   const formSubmitHandler = (event) => {
     event.preventDefault();
     ctx.sharedState.newAchievement(formData);
-    setFormData({title: '', description: '', tag: ''});
 
   };
   return (
     <div>
       <form className={classes.form} onSubmit = {formSubmitHandler}>
         <div className="mockup-window border border-base-100">
-          <Input label="Title" placeholder="Did you won oscar today?" inputChange={progressHandler} />
+          <Input label="Title" placeholder="Did you won oscar today?" inputChange={titleHandler} />
           <Input
             label="Description"
             placeholder="Tell us about your achievement! (350 words)"
-            inputChange={progressHandler}
+            inputChange={descriptionHandler}
             maxlength="350"
           />
           <progress
@@ -82,7 +80,7 @@ const AchievementForm = () => {
           <Input
             label="Tag"
             placeholder="Don't use '#' we'll do that for you :)"
-            inputChange={progressHandler}
+            inputChange={tagHandler}
           />
         </div>
         <Button className={classes.btn}>Add Achievement</Button>
