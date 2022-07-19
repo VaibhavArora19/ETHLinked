@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import AchievementList from "../components/Achievements/AchievementList";
-import { AppContext } from "../components/context/Achievement-context";
+import { AppContext } from "../components/context/AchievementContext";
 
 export default function Home() {
   const ctx = useContext(AppContext)

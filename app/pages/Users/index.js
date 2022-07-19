@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { AppContext } from "../../components/context/Achievement-context";
+import { AppContext } from "../../components/context/AchievementContext";
 
 import SearchBar from "../../components/UI/SearchBar";
 import AchievementList from "../../components/Achievements/AchievementList";

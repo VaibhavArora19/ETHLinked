@@ -3,7 +3,7 @@ import { useContext } from 'react';
 
 import classes from './Navbar.module.css';
 
-import { AppContext } from '../context/Achievement-context';
+import { AppContext } from '../context/AchievementContext';
 import Button from '../UI/Button';
 
 const Navbar = () => {
