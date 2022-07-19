@@ -18,4 +18,4 @@ main()
     console.log(error);
     process.exit(1);
 }) 
-// ETHLinked contract address: 0x99AF5C8122cd654A9ccbA6D04B7124e94EADfEE9
+// ETHLinked contract address: 0xdBEAB88590a6CB699970914a4CBAaD9409cA0480

@@ -28,10 +28,13 @@ export function AppWrapper({ children }) {
 
   // <- useEffect connects to the wallet and also get the achievements from the blockchain ->
   useEffect(() => {
-    const { ethereum } = window;
-    console.log(ethereum.chainId);
+    connectWallet();
+  }, []);
 
-    const connectWallet = async () => {
+  // <- useEffect ends here -> 
+
+    const connectWallet = async() => {
+      const { ethereum } = window;
       let accounts;
       if (!ethereum.isMetaMask) {
         alert("Please install MetaMask");
@@ -64,12 +67,7 @@ export function AppWrapper({ children }) {
       }
 
       getAchievements();
-    };
-    connectWallet();
-  }, []);
-
-  // <- useEffect ends here -> 
-
+    }
 
   // <- getAchievements is called to get the achievements from the blockchain ->
 
@@ -157,7 +155,8 @@ export function AppWrapper({ children }) {
     account,
     newAchievement,
     getAchievements,
-    isSuccess
+    isSuccess,
+    connectWallet
   };
 
   //  <- sharedState ends here ->

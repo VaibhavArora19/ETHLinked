@@ -10,6 +10,11 @@ import classes from "./AchievementForm.module.css";
 const AchievementForm = () => {
   const ctx = useContext(AppContext);
 
+  if(!ctx.sharedState.account.isConnected)
+  {
+    return <div className= {classes.connect}>Please Connect to MetaMask to add Achievement!!!</div>
+  }
+
   const [formData, setFormData] = useState({
     title: '',
     description: '',

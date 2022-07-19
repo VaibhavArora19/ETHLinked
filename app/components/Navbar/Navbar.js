@@ -10,7 +10,15 @@ const Navbar = () => {
   const ctx = useContext(AppContext);
 
   const accountAddress = ctx.sharedState.account.accountAddress;
+  const isConnected = ctx.sharedState.account.isConnected;
 
+  const connectHandler = () => {
+    ctx.sharedState.connectWallet();
+  }
+
+  const errroHandler = () => {
+    console.log('It is already connected! XD');
+  }
 
   return (
     <div className = {classes.navbar}>
@@ -22,10 +30,11 @@ const Navbar = () => {
           <li><Link href = '/Tags'>Tags</Link></li>
           <li><Link href = '/Users'>Users</Link></li>
           <li><Link href = '/Add'>Add Achievement</Link></li>
+          <li><Link href = '/Help'>Help</Link></li>
         </ul>
       </div>
       <div className = {classes.wallet}>
-        <Button>{!accountAddress ? 'Connect Metamask' : `${accountAddress.substring(0,4)}...${accountAddress.substring(38,42)}`}</Button>
+        <Button onClick = {!isConnected ? connectHandler : errroHandler}>{!accountAddress ? 'Connect Metamask' : `${accountAddress.substring(0,4)}...${accountAddress.substring(38,42)}`}</Button>
       </div>
     </div>
   );
