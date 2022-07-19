@@ -9,7 +9,6 @@ import classes from "./AchievementForm.module.css";
 
 const AchievementForm = () => {
   const [progress, setProgress] = useState(0);
-  
   const [formData, setFormData] = useState({
     title: '',
     description: '',
@@ -21,12 +20,6 @@ const AchievementForm = () => {
   {
     return <div className= {classes.connect}>Please Connect to MetaMask to add Achievement!!!</div>
   }
-
-
-
-  const isSuccess = ctx.sharedState.isSuccess;
-
-
 
   const titleHandler = (input) => {
     
@@ -49,7 +42,7 @@ const AchievementForm = () => {
   }
 
   const tagHandler = (input) => {
-
+    console.log('tag value', input);
     setFormData((prevState) => {
       return {
         ...prevState,
@@ -59,7 +52,7 @@ const AchievementForm = () => {
   }
 
   const formSubmitHandler = (event) => {
-    event.preventDefault();
+    event.preventDefault(); 
     ctx.sharedState.newAchievement(formData);
 
   };
@@ -83,16 +76,11 @@ const AchievementForm = () => {
             label="Tag"
             placeholder="Don't use '#' we'll do that for you :)"
             inputChange={tagHandler}
+            maxlength = "15"
           />
         </div>
         <Button className={classes.btn}>Add Achievement</Button>
       </form>
-      {isSuccess && <div className={`alert alert-success shadow-lg ${classes.notification}`}>
-      <div>
-        <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-        <span>Achievement added successfully!!!</span>
-      </div>
-    </div>}
     </div>
   );
 };

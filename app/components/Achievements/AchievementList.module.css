@@ -14,9 +14,16 @@
     font-weight: bolder;
 }
 
-.achievement h3{
+.achievement h2{
     margin-left: 2rem;
     font-size: 1.2rem;
+    margin-top: 1%;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.achievement h3{
+    margin-left: 2rem;
+    font-size: 1rem;
     margin-top: 1%;
     font-family: 'Source Sans Pro', sans-serif;
 }

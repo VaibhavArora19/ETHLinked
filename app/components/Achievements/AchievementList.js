@@ -11,8 +11,8 @@ const AchievementList = (props) => {
         {props.title}
         <span className={classes.time}> Published at {props.timestamp}</span>
       </h1>
-      <h3>{props.description}</h3>
-      <Button className={classes.button} onClick = {clickHandler}>#{props.tag}</Button>
+      <h2>{props.description}</h2>
+      <button className={`btn btn-outline btn-accent ${classes.button}`} onClick = {clickHandler}>#{props.tag}</button>
       <h3>By {props.user}</h3>
     </div>
   );

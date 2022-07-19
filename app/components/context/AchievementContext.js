@@ -1,5 +1,7 @@
 // src/context/state.js
 import { createContext, useContext, useEffect, useState } from "react";
+import {useRouter} from 'next/router';
+
 import {ethers} from 'ethers';
 import {ABI, contractAddress} from '../constants/index';
 
@@ -7,7 +9,7 @@ export const AppContext = createContext();
 
 export function AppWrapper({ children }) {
   const [searchedArray, setSearchedArray] = useState([]);
-
+  const router = useRouter();
   const [account, setAccount] = useState({
     isConnected: false,
     accountAddress: null,
@@ -96,7 +98,7 @@ export function AppWrapper({ children }) {
         timestamp: `${publishedDate[1]} ${publishedDate[2]} ${publishedDate[3]}`      
       }
     })
-    
+    filteredAchievements.reverse();
     setAchievementArray(filteredAchievements);
 
     setAccount((prevState) => {
@@ -140,6 +142,7 @@ export function AppWrapper({ children }) {
   async function newAchievement(achievementData) {
     const {title, description, tag} = achievementData;
     const tx = await account.contract.addAchievement(title, description, tag);
+    router.push('/');
     await tx.wait();
     setIsSuccess(true);
     getAchievements();

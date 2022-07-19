@@ -6,7 +6,19 @@ const Input = (props) => {
   const [input, setInput] = useState("");
 
   const changeHandler = (event) => {
-    setInput(event.target.value);
+    const lastVal = event.target.value.substr(event.target.value.length -1);
+    const value = lastVal.charCodeAt();
+
+    if(props.label === 'Tag'){
+      if(value < 65 && value != 45){
+        return;
+      }else if(value > 90 && value < 97){
+        return;
+      }else if(value > 97 && value > 122){
+        return;
+      }
+    }
+     setInput(event.target.value);
 
      props.inputChange(event.target.value);
     
@@ -23,7 +35,8 @@ const Input = (props) => {
         className="input input-bordered w-full max-w-xs"
         value = {input}
         onChange = {changeHandler}
-        maxLength={props.maxlength ? props.maxlength : '10000'}
+        maxLength={props.maxlength ? props.maxlength : '100'}
+        required
       />
     </div>
   );

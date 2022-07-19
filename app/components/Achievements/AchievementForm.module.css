@@ -16,31 +16,8 @@
     margin-top:8%;
 }
 
-.notification {
-    width: 25%;
-    z-index: 100;
-    position: relative;
-    left:72%;
-    bottom:480px;
-    animation: alert 0.3s ease-out;
-}
-
 .connect{
   font-size: 1.5rem;
   text-align: center;
   margin-top: 10%;
-}
-
-@keyframes alert {
-      0%{
-        opacity: 0;
-        transform: translateX(10%);
-      }
-      50%{
-        opacity: 0.5;
-      }
-      100%{
-        opacity: 1;
-        transform: translateX(0%);
-      }
 }
