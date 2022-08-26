@@ -39,5 +39,18 @@
     margin-left: 2%;
 }
 
+.commentSection{
+    display: flex;
+    justify-content: space-between;
+    width: 16%;
+}
+.commentSection img{
+    width: 25px;
+    height: 25px;
+    margin-top: 8%;
+    cursor: pointer;
+    color: white;
+}
+
 
 
