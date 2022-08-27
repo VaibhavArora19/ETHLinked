@@ -11,30 +11,34 @@ const Comments = () => {
   const router = useRouter();
   const ctx = useContext(AppContext);
 
+
+  ctx.sharedState.commentPageHandler(true);
   const achievementId = router.query.achievementId;
 
+  let achievementArray = ctx.sharedState.achievementArray;
 
-  const achievement = ctx.sharedState.achievementArray.filter(
+  const achievement = achievementArray.filter(
     (singleAchievement) => singleAchievement.id == achievementId
   );
 
-
   return <div>
-    <AchievementList 
-    key={achievement[0].id}
-    id={achievement[0].id}
+  {(achievement.length != 0) && <div>
+  <AchievementList 
+  key={achievement[0].id}
+  id={achievement[0].id}
     title={achievement[0].title}
     description={achievement[0].description}
     tag={achievement[0].tag}
     timestamp={achievement[0].timestamp}
     user={achievement[0].user}
     />
+    {achievement[0].comments.map((comment, index) => (
+      <SingleComment key = {index} comment = {comment} />
+      ))}  
+      </div>}
+      </div> 
 
-    {achievement[0].comments.map(comment => (
-        <SingleComment comment = {comment} />
-    ))}
-  </div>
-  
+
 };
 
 export default Comments;

@@ -9,6 +9,7 @@ export const AppContext = createContext();
 
 export function AppWrapper({ children }) {
   const [searchedArray, setSearchedArray] = useState([]);
+  const [isCommentPage, setIsCommentPage] = useState(false);
   const router = useRouter();
   const [account, setAccount] = useState({
     isConnected: false,
@@ -27,7 +28,9 @@ export function AppWrapper({ children }) {
     },3500);
   }
 
-
+  const commentPageHandler = (value) => {
+    setIsCommentPage(value);
+  }
   // <- useEffect connects to the wallet and also get the achievements from the blockchain ->
   useEffect(() => {
     connectWallet();
@@ -74,7 +77,6 @@ export function AppWrapper({ children }) {
   // <- getAchievements is called to get the achievements from the blockchain ->
 
   async function getAchievements() {
-
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner();
     const contract = new ethers.Contract(contractAddress, ABI, signer);
@@ -159,7 +161,9 @@ export function AppWrapper({ children }) {
     newAchievement,
     getAchievements,
     isSuccess,
-    connectWallet
+    connectWallet,
+    isCommentPage,
+    commentPageHandler
   };
 
   //  <- sharedState ends here ->

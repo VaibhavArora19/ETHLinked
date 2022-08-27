@@ -10,8 +10,10 @@ import classes from "../styles/Home.module.css";
 export default function Home() {
   
   const ctx = useContext(AppContext);
+  ctx.sharedState.commentPageHandler(false);
   const isSuccess = ctx.sharedState.isSuccess;
-  
+
+
   return (
     <Fragment>
     <Head>

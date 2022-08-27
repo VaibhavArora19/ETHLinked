@@ -2,12 +2,31 @@ import Link from "next/link";
 
 import classes from "./AchievementList.module.css";
 
-import Button from "../UI/Button";
+import CommentForm from "../CommentSection/CommentForm";
+
+import { useContext, useState } from "react";
+
+import { AppContext } from "../context/AchievementContext";
 
 const AchievementList = (props) => {
+  const [showCommentForm, setShowCommentForm] = useState(false);
+
+  const ctx = useContext(AppContext);
+
+  const isCommentPage = ctx.sharedState.isCommentPage;
+
   const clickHandler = () => {
     console.log("You are an idiot :P");
   };
+
+  const addCommentHandler = () => {
+    setShowCommentForm(true);
+  };
+
+  const closeCommentHandler = () =>{
+    setShowCommentForm(false);
+  }
+
   return (
     <div className={`${classes.achievement}`}>
       <h1>
@@ -22,9 +41,16 @@ const AchievementList = (props) => {
         >
           #{props.tag}
         </button>
-        <Link href = {`/Achievement/${props.id}`}>
-          <img src="https://img.icons8.com/material-outlined/24/000000/comments--v1.png"/>
-        </Link>
+        {showCommentForm && <CommentForm closeForm = {closeCommentHandler}/>}
+        {isCommentPage ? (
+          <button className="btn btn-primary" onClick={addCommentHandler}>
+            Comment
+          </button>
+        ) : (
+          <Link href={`/Achievement/${props.id}`}>
+            <img src="https://img.icons8.com/material-outlined/24/000000/comments--v1.png" />
+          </Link>
+        )}
       </div>
       <h3>By {props.user}</h3>
     </div>
