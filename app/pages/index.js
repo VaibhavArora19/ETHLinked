@@ -1,10 +1,11 @@
-import Head from 'next/head';
+
 
 import { Fragment, useContext } from "react";
 import { AppContext } from "../components/context/AchievementContext";
 
 import AchievementList from "../components/Achievements/AchievementList";
 import LandingPage from '../components/LandingPage/LandingPage';
+
 import Sidebar from '../components/Sidebar/Sidebar';
 
 import classes from "../styles/Home.module.css";
@@ -21,58 +22,56 @@ export default function Home() {
   sideBarClass = {float:"right", display:"inline-block", width:"37%", marginLeft:"2%"};
 
     // will go at line 65
-    //<LandingPage />
-          // <div style={{display:"inline-block"}}>
-            //<div style={achievementListClass}>
-           //ctx.sharedState.achievementArray.map((achievement) => (
-            //<AchievementList
-            //key={achievement.id}
-           // id={achievement.id}
-           // title={achievement.title}
-           // description={achievement.description}
-            //tag={achievement.tag}
-            //timestamp={achievement.timestamp}
-            //user={achievement.user}
-            //comments = {achievement.comments}
-            // />
-            //))}
-            //</div>
-            //<div style = {sideBarClass}>
-            //<Sidebar /> 
-            //</div>
-            //</div>
-  return (
-    <Fragment>
-    <Head>
-      <html data-theme = "bumblebee"></html>
-    </Head>
+    
+    return (
+      <Fragment>
       <div className={classes.container}>
-        <div>
-          {isSuccess && (
-            <div
-              className={`alert alert-success shadow-lg ${classes.notification}`}
-            >
+          <div>
+            {isSuccess && (
+              <div
+                className={`alert alert-success shadow-lg ${classes.notification}`}
+              >
               <div>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="stroke-current flex-shrink-0 h-6 w-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                >
-                  <path
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="stroke-current flex-shrink-0 h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
                     strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-                <span>Achievement added successfully!!!</span>
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                    </svg>
+                  <span>Achievement added successfully!!!</span>
+                </div>
               </div>
-            </div>
-          )}
-        </div> 
-      </div>
-    </Fragment>
-  );
-
+            )}
+            </div> 
+            <LandingPage />
+            <div style={{display:"inline-block"}}>
+            <div style={achievementListClass}>
+            {ctx.sharedState.achievementArray.map((achievement) => (
+              <AchievementList
+              key={achievement.id}
+              id={achievement.id}
+              title={achievement.title}
+              description={achievement.description}
+              tag={achievement.tag}
+              timestamp={achievement.timestamp}
+              user={achievement.user}
+              comments = {achievement.comments}
+              />
+              ))}
+              </div>
+              <div style = {sideBarClass}>
+              <Sidebar /> 
+              </div>
+              </div>
+              </div>
+              </Fragment>
+              );
+             
 }

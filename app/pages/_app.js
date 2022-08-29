@@ -1,4 +1,4 @@
-import {Head} from "next/head";
+
 import Navbar from "../components/Navbar/Navbar";
 import {AppWrapper} from "../components/context/AchievementContext";
 
