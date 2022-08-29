@@ -20,14 +20,31 @@ export default function Home() {
   achievementListClass = {display:"inline-block", width:"59%"};
   sideBarClass = {float:"right", display:"inline-block", width:"37%", marginLeft:"2%"};
 
+    // will go at line 65
+    //<LandingPage />
+          // <div style={{display:"inline-block"}}>
+            //<div style={achievementListClass}>
+           //ctx.sharedState.achievementArray.map((achievement) => (
+            //<AchievementList
+            //key={achievement.id}
+           // id={achievement.id}
+           // title={achievement.title}
+           // description={achievement.description}
+            //tag={achievement.tag}
+            //timestamp={achievement.timestamp}
+            //user={achievement.user}
+            //comments = {achievement.comments}
+            // />
+            //))}
+            //</div>
+            //<div style = {sideBarClass}>
+            //<Sidebar /> 
+            //</div>
+            //</div>
   return (
     <Fragment>
     <Head>
       <html data-theme = "bumblebee"></html>
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
-      <link href="https://fonts.googleapis.com/css2?family=Mukta&display=swap" rel="stylesheet" />
-
     </Head>
       <div className={classes.container}>
         <div>
@@ -53,27 +70,6 @@ export default function Home() {
               </div>
             </div>
           )}
-          { //<LandingPage />
-          // <div style={{display:"inline-block"}}>
-            //<div style={achievementListClass}>
-           //ctx.sharedState.achievementArray.map((achievement) => (
-            //<AchievementList
-            //key={achievement.id}
-           // id={achievement.id}
-           // title={achievement.title}
-           // description={achievement.description}
-            //tag={achievement.tag}
-            //timestamp={achievement.timestamp}
-            //user={achievement.user}
-            //comments = {achievement.comments}
-            // />
-            //))}
-            //</div>
-            //<div style = {sideBarClass}>
-            //<Sidebar /> 
-            //</div>
-            //</div>
-      }
         </div> 
       </div>
     </Fragment>
