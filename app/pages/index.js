@@ -25,7 +25,7 @@ export default function Home() {
     <Head>
       <html data-theme = "bumblebee"></html>
       <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigi />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
       <link href="https://fonts.googleapis.com/css2?family=Mukta&display=swap" rel="stylesheet" />
 
     </Head>
@@ -53,8 +53,8 @@ export default function Home() {
               </div>
             </div>
           )}
-          <LandingPage />
-          {// <div style={{display:"inline-block"}}>
+          { //<LandingPage />
+          // <div style={{display:"inline-block"}}>
             //<div style={achievementListClass}>
            //ctx.sharedState.achievementArray.map((achievement) => (
             //<AchievementList
