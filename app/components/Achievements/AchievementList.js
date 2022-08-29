@@ -15,44 +15,56 @@ const AchievementList = (props) => {
 
   const isCommentPage = ctx.sharedState.isCommentPage;
 
-  const clickHandler = () => {
-    console.log("You are an idiot :P");
-  };
+  const randomImage = Math.floor(Math.random() * 5);
+
 
   const addCommentHandler = () => {
     setShowCommentForm(true);
   };
 
-  const closeCommentHandler = () =>{
+  const closeCommentHandler = () => {
     setShowCommentForm(false);
-  }
+  };
 
   return (
     <div className={`${classes.achievement}`}>
-      <h1>
-        {props.title}
-        <span className={classes.time}> Published at {props.timestamp}</span>
-      </h1>
+      <div className="grid grid-cols-2 ">
+        <div className= {classes.title}>
+          <div className={`avatar ${classes.profile}`}>
+            <div className="w-10 rounded-full">
+              <img src={`/${randomImage}.png`} />
+            </div>
+          </div>
+        <h1>{props.title}</h1>
+        </div>
+        <span className={classes.time}>
+          {props.timestamp}
+        </span>
+      </div>
+
+      <h3>{props.user}</h3>
       <h2>{props.description}</h2>
       <div className={classes.commentSection}>
-        <button
-          className={`btn btn-outline btn-accent ${classes.button}`}
-          onClick={clickHandler}
-        >
-          #{props.tag}
-        </button>
-        {showCommentForm && <CommentForm closeForm = {closeCommentHandler}/>}
         {isCommentPage ? (
-          <button className="btn btn-primary" onClick={addCommentHandler}>
+          <button className={`btn btn-primary`} onClick={addCommentHandler}>
             Comment
           </button>
         ) : (
           <Link href={`/Achievement/${props.id}`}>
-            <img src="https://img.icons8.com/material-outlined/24/000000/comments--v1.png" />
+          <div className={`grid grid-cols-2 ${classes.commentDiv}`}>
+          <img src="/comment.png" />
+          <span>{props.comments.length}</span> 
+          </div>  
           </Link>
         )}
+        <h4>#{props.tag}</h4>
+        {showCommentForm && (
+          <CommentForm
+            closeForm={closeCommentHandler}
+            achievementId={props.id}
+          />
+        )}
       </div>
-      <h3>By {props.user}</h3>
     </div>
   );
 };

@@ -6,6 +6,8 @@ import classes from './Navbar.module.css';
 import { AppContext } from '../context/AchievementContext';
 import Button from '../UI/Button';
 
+import Icon from 'next/image';
+
 const Navbar = () => {
   const ctx = useContext(AppContext);
 
@@ -25,12 +27,12 @@ const Navbar = () => {
       <div>
         <ul className = {classes.items}>
           <li>
-            <Link href = '/'>ETHLinked</Link>
+            <Link href = '/'><img src='/icon.svg'/></Link>
           </li>
-          <li><Link href = '/Tags'>Tags</Link></li>
-          <li><Link href = '/Users'>Users</Link></li>
-          <li><Link href = '/Add'>Add Achievement</Link></li>
-          <li><Link href = '/Help'>Help</Link></li>
+          <li><div><Link href = '/Tags'>Tags</Link></div></li>
+          <li><div><Link href = '/Users'>Users</Link></div></li>
+          <li><div><Link href = '/Add'>Post</Link></div></li>
+          <li><div><Link href = '/Help'>Help</Link></div></li>
         </ul>
       </div>
       <div className = {classes.wallet}>

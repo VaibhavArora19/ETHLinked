@@ -1,8 +1,10 @@
 // src/context/state.js
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext,  useEffect, useState } from "react";
 import {useRouter} from 'next/router';
 
+import moment from 'moment';
 import {ethers} from 'ethers';
+
 import {ABI, contractAddress} from '../constants/index';
 
 export const AppContext = createContext();
@@ -85,11 +87,20 @@ export function AppWrapper({ children }) {
     const achievements = await contract.getAchievements();
 
     const filteredAchievements = achievements.map((achievement) => {
+      
       const epochTime = achievement.timestamp;
-      let date = new Date(0);
-      date.setUTCSeconds(epochTime);
-      date = date.toString();
-      const publishedDate = date.split(" ");
+      const date = new Date(epochTime*1000);
+      date = date.toLocaleDateString("en-US").toString();
+
+      let time = '';
+      for(let i =2; i>=0; i--){
+        time += date.split('/')[i];
+      }
+
+      const dateValue = moment(time, "YYYYDDMM").fromNow();
+
+
+    
       return {
         id: achievement.id.toString(),
         title: achievement.title,
@@ -97,7 +108,7 @@ export function AppWrapper({ children }) {
         tag: achievement.tag.toUpperCase(),
         user:achievement.user,
         comments: achievement.comments,
-        timestamp: `${publishedDate[1]} ${publishedDate[2]} ${publishedDate[3]}`      
+        timestamp: `${dateValue}`      
       }
     })
     filteredAchievements.reverse();
@@ -151,6 +162,17 @@ export function AppWrapper({ children }) {
   
   }
 
+  // <- addComment allows you to comment on a particular achievement
+
+  async function addComment(commentId, newComment){
+
+    const _id = Number(commentId);
+
+    router.push(`/Achievement/${commentId}`)
+    // const tx = await account.contract.addComment(_id, newComment);
+  
+  } 
+
   // <- sharedState is the one that is being shared accross every component 
   
   const sharedState = {
@@ -163,7 +185,8 @@ export function AppWrapper({ children }) {
     isSuccess,
     connectWallet,
     isCommentPage,
-    commentPageHandler
+    commentPageHandler,
+    addComment
   };
 
   //  <- sharedState ends here ->

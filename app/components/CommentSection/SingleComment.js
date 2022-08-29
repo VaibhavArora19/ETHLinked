@@ -1,5 +1,4 @@
 const SingleComment = (props) => {
-    console.log('working');
     return <div>
     <h1>Hello</h1>
         <h1>{props.comment}</h1>

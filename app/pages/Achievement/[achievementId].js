@@ -24,13 +24,14 @@ const Comments = () => {
   return <div>
   {(achievement.length != 0) && <div>
   <AchievementList 
-  key={achievement[0].id}
-  id={achievement[0].id}
+    key={achievement[0].id}
+    id={achievement[0].id}
     title={achievement[0].title}
     description={achievement[0].description}
     tag={achievement[0].tag}
     timestamp={achievement[0].timestamp}
     user={achievement[0].user}
+    comments = {achievement[0].comments}
     />
     {achievement[0].comments.map((comment, index) => (
       <SingleComment key = {index} comment = {comment} />

@@ -4,6 +4,8 @@ import { Fragment, useContext } from "react";
 import { AppContext } from "../components/context/AchievementContext";
 
 import AchievementList from "../components/Achievements/AchievementList";
+import LandingPage from '../components/LandingPage/LandingPage';
+import Sidebar from '../components/Sidebar/Sidebar';
 
 import classes from "../styles/Home.module.css";
 
@@ -13,10 +15,19 @@ export default function Home() {
   ctx.sharedState.commentPageHandler(false);
   const isSuccess = ctx.sharedState.isSuccess;
 
+  let achievementListClass, sideBarClass;
+
+  achievementListClass = {display:"inline-block", width:"59%"};
+  sideBarClass = {float:"right", display:"inline-block", width:"37%", marginLeft:"2%"};
 
   return (
     <Fragment>
     <Head>
+      <html data-theme = "bumblebee"></html>
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigi />
+      <link href="https://fonts.googleapis.com/css2?family=Mukta&display=swap" rel="stylesheet" />
+
     </Head>
       <div className={classes.container}>
         <div>
@@ -42,17 +53,26 @@ export default function Home() {
               </div>
             </div>
           )}
+          <LandingPage />
+          <div style={{display:"inline-block"}}>
+            <div style={achievementListClass}>
           {ctx.sharedState.achievementArray.map((achievement) => (
             <AchievementList
-              key={achievement.id}
-              id={achievement.id}
-              title={achievement.title}
-              description={achievement.description}
-              tag={achievement.tag}
-              timestamp={achievement.timestamp}
-              user={achievement.user}
+            key={achievement.id}
+            id={achievement.id}
+            title={achievement.title}
+            description={achievement.description}
+            tag={achievement.tag}
+            timestamp={achievement.timestamp}
+            user={achievement.user}
+            comments = {achievement.comments}
             />
-          ))}
+            ))}
+            </div>
+            <div style = {sideBarClass}>
+            <Sidebar /> 
+            </div>
+            </div>
         </div>
       </div>
     </Fragment>
