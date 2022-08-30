@@ -39,7 +39,7 @@
 }
 
 .items li:first-child:hover{
-    background-color: aliceblue;
+    background-color: white;
 }
 
 .items li:hover{

@@ -14,19 +14,19 @@
 }
 
 .achievement h2{
-    margin-left: 6.5rem;
+    margin-left: 13%;
     font-size: 1rem;
     margin-top: 5%;
     font-weight: normal;
     line-height: 1.7;
     letter-spacing: 0.25;
-    width: 80%;
+    width: 78%;
     font-weight: 500;
 
 }
 
 .achievement h3{
-    margin-left: 6.5rem;
+    margin-left: 13%;
     font-size: 0.82rem;
     font-weight: 500;
     background: #121FCF;
@@ -110,4 +110,18 @@
 }
 .title h1{
     display: inline;
+}
+
+.createComment{
+    margin-top: 1%;
+    margin-left: 7.7rem;
+    margin-bottom: 4%;
+    width: 30%;
+}
+
+.createComment span{
+    color: #E9C22B;
+    text-align: right;
+    font-size: 1.2rem;
+    cursor: pointer;
 }

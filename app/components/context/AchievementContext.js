@@ -173,6 +173,7 @@ export function AppWrapper({ children }) {
   
   } 
 
+
   // <- sharedState is the one that is being shared accross every component 
   
   const sharedState = {
@@ -186,7 +187,7 @@ export function AppWrapper({ children }) {
     connectWallet,
     isCommentPage,
     commentPageHandler,
-    addComment
+    addComment,
   };
 
   //  <- sharedState ends here ->

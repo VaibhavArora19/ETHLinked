@@ -2,14 +2,11 @@ import Link from "next/link";
 
 import classes from "./AchievementList.module.css";
 
-import CommentForm from "../CommentSection/CommentForm";
-
-import { useContext, useState } from "react";
+import { useContext} from "react";
 
 import { AppContext } from "../context/AchievementContext";
 
 const AchievementList = (props) => {
-  const [showCommentForm, setShowCommentForm] = useState(false);
 
   const ctx = useContext(AppContext);
 
@@ -18,13 +15,7 @@ const AchievementList = (props) => {
   const randomImage = Math.floor(Math.random() * 5);
 
 
-  const addCommentHandler = () => {
-    setShowCommentForm(true);
-  };
 
-  const closeCommentHandler = () => {
-    setShowCommentForm(false);
-  };
 
   return (
     <div className={`${classes.achievement}`}>
@@ -45,11 +36,7 @@ const AchievementList = (props) => {
       <h3>{props.user}</h3>
       <h2>{props.description}</h2>
       <div className={classes.commentSection}>
-        {isCommentPage ? (
-          <button className={`btn btn-primary`} onClick={addCommentHandler}>
-            Comment
-          </button>
-        ) : (
+        {isCommentPage ? <div></div> : (
           <Link href={`/Achievement/${props.id}`}>
           <div className={`grid grid-cols-2 ${classes.commentDiv}`}>
           <img src="/comment.png" />
@@ -58,13 +45,8 @@ const AchievementList = (props) => {
           </Link>
         )}
         <h4>#{props.tag}</h4>
-        {showCommentForm && (
-          <CommentForm
-            closeForm={closeCommentHandler}
-            achievementId={props.id}
-          />
-        )}
       </div>
+
     </div>
   );
 };

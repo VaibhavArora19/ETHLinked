@@ -1,0 +1,16 @@
+.socials{
+    height: 90%;
+    overflow-y: auto;
+}
+
+.socials{
+    position: relative;
+    margin-top: 10%;
+}
+.socials div{
+    margin-left: 10%;
+}
+.copyright{
+    margin-top: 4%;
+    text-align: center;
+}
