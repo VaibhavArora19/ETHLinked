@@ -37,10 +37,10 @@ const Sidebar = () => {
     <div>
     <div className= {`${classes.socials}`} >
     <div className="grid grid-cols-4">
-    <a href = "https://twitter.com/Vaibhavtwts" target = "_blank" rel = "_noreferrer"><img src = "/twitter.svg" alt = "twitter image"/></a>
-    <a href = "https://www.linkedin.com/in/vaibhav-arora-5234301a0" target = "_blank" rel = "_noreferrer"><img src = "/linkedin.svg" alt = "linkedin image"/></a>
-    <a href = "https://vaibhavcodes.me" target = "_blank" rel = "_noreferrer"><img src="https://img.icons8.com/offices/36/000000/visit.png" alt = "website"/></a>
-    <a href = "https://www.instagram.com/vaibhavarora.19/" target = "_blank" rel = "_noreferrer"><img src ="/instagram.svg" alt = "instagram image"/></a>
+    <a href = "https://twitter.com/Vaibhavtwts" target = "_blank" rel = "noopener noreferrer"><img src = "/twitter.svg" alt = "twitter image"/></a>
+    <a href = "https://www.linkedin.com/in/vaibhav-arora-5234301a0" target = "_blank" rel = "noopener noreferrer"><img src = "/linkedin.svg" alt = "linkedin image"/></a>
+    <a href = "https://vaibhavcodes.me" target = "_blank" rel = "noopener noreferrer"><img src="https://img.icons8.com/offices/36/000000/visit.png" alt = "website"/></a>
+    <a href = "https://www.instagram.com/vaibhavarora.19/" target = "_blank" rel = "noopener noreferrer"><img src ="/instagram.svg" alt = "instagram image"/></a>
     </div>
     <p className= {classes.copyright}>© 2022 - Designed and built by Vaibhav Arora</p>
     </div>
