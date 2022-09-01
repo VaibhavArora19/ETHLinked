@@ -5,6 +5,7 @@ import classes from "./Input.module.css";
 const Input = (props) => {
   const [input, setInput] = useState("");
 
+
   const changeHandler = (event) => {
     const lastVal = event.target.value.substr(event.target.value.length -1);
     const value = lastVal.charCodeAt();

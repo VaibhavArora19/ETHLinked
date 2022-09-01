@@ -12,7 +12,7 @@ const AchievementList = (props) => {
 
   const isCommentPage = ctx.sharedState.isCommentPage;
 
-  const randomImage = Math.floor(Math.random() * 5);
+  const randomImage = (props.id % 5) + 1;
 
 
 

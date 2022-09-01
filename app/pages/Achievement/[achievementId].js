@@ -10,6 +10,7 @@ import CommentForm from "../../components/CommentSection/CommentForm";
 
 import classes from "./achievementId.module.css";
 
+
 const Comments = () => {
   const router = useRouter();
   const ctx = useContext(AppContext);
@@ -40,7 +41,9 @@ const Comments = () => {
           <CommentForm achievementId={achievementId} />
           {achievement[0].comments.map((comment, index) => (
             <SingleComment key={index} comment={comment} />
-          ))}
+          ))
+        }
+       
         </div>
       )}
     </div>

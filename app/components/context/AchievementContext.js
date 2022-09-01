@@ -168,11 +168,13 @@ export function AppWrapper({ children }) {
 
     const _id = Number(commentId);
 
-    router.push(`/Achievement/${commentId}`)
-    // const tx = await account.contract.addComment(_id, newComment);
-  
-  } 
+    console.log('new comment is ', newComment);
 
+    const tx = await account.contract.addComment(_id, newComment);
+    await tx.wait(); 
+    
+    getAchievements();
+  } 
 
   // <- sharedState is the one that is being shared accross every component 
   
