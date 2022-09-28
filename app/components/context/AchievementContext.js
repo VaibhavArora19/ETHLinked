@@ -168,8 +168,6 @@ export function AppWrapper({ children }) {
 
     const _id = Number(commentId);
 
-    console.log('new comment is ', newComment);
-
     const tx = await account.contract.addComment(_id, newComment);
     await tx.wait(); 
     
