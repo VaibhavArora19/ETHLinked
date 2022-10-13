@@ -61,8 +61,8 @@ export function AppWrapper({ children }) {
         });
         const chainId = await ethereum.request({ method: "eth_chainId" });
 
-        if (chainId !== "0x3") {
-          alert("Please connect to Ropsten Testnet!!!");
+        if (chainId !== "0x5") {
+          alert("Please connect to Goerli Testnet!!!");
         } else {
           setAccount((prevState) => {
             return {
